@@ -7,7 +7,30 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <title>Around The U.S.</title>
   </head>
-  <body>
-    <p class="paragraph">Hello, World</p>
+  <body class="page">
+    <div class="page__content">
+      <header class="header page__header">
+        <img class="header__logo" src="./images/logo.svg" alt="" />
+      </header>
+
+      <main class="content">
+        <section class="profile page__profile">
+          <img
+            class="profile__image"
+            src="./images/jacques-cousteau.jpg"
+            alt=""
+          />
+          <div class="profile__content">
+            <h1 class="profile__name">Jacques Cousteau</h1>
+            <button
+              class="profile__button profile__button_content_edit"
+              type="button"
+            ></button>
+            <p class="profile__title">Explorer</p>
+          </div>
+          <button class="profile__button profile__button_content_add"></button>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
