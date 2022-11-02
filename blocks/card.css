@@ -12,13 +12,12 @@
 
 .card__content {
   background-color: #fff;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(100px, 219px) 1fr;
+  grid-template-rows: 1fr;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   border-radius: 0 0 10px 10px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .card__title {
@@ -27,6 +26,9 @@
   line-height: 29px;
   font-weight: 900;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card__like-icon {
