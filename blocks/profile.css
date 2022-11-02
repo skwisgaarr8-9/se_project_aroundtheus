@@ -7,6 +7,7 @@
   padding-top: 62px;
 }
 .profile__image {
+  height: 120px;
   object-fit: cover;
   border-radius: 50%;
   grid-area: image;
@@ -14,9 +15,9 @@
 
 .profile__content {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  column-gap: 18px;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 0;
   grid-area: description;
 }
 
@@ -28,7 +29,7 @@
 }
 
 .profile__title {
-  margin: 0;
+  margin: 8px 0 0 0;
   font-size: 18px;
   line-height: 1.2;
 }
@@ -42,6 +43,7 @@
   border: 1px solid #fff;
   background-position: center;
   transition: opacity ease-in 0.2s;
+  margin-left: 18px;
 }
 
 .profile__button_content_edit:hover {
@@ -58,7 +60,7 @@
   border: 2px solid #fff;
   transition: opacity ease-in 0.2s;
   grid-area: add-button;
-  justify-self: center;
+  justify-self: end;
   align-self: center;
 }
 
