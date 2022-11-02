@@ -2,7 +2,6 @@
   background-color: #000;
   font-family: "Inter", Arial, sans-serif;
   color: #fff;
-  margin: 0;
 }
 
 .page__content {
@@ -17,5 +16,9 @@
 }
 
 .page__profile {
+  margin: 0 200px;
+}
+
+.page__gallery {
   margin: 0 200px;
 }
