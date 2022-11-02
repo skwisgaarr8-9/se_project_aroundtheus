@@ -3,7 +3,6 @@
 }
 
 .gallery__cards {
-  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 282px);
   grid-template-rows: repeat(2, 361px);
