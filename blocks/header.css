@@ -7,3 +7,15 @@
 .header__logo {
   padding-bottom: 41px;
 }
+
+@media screen and (max-width: 480px) {
+  .header {
+    width: 100%;
+    padding-top: 28px;
+  }
+
+  .header__logo {
+    padding: 0 0 32px 27px;
+    width: 126px;
+  }
+}

@@ -13,10 +13,10 @@
 .card__content {
   background-color: #fff;
   display: grid;
-  grid-template-columns: minmax(100px, 219px) 1fr;
+  grid-template-columns: 1fr 41px;
   grid-template-rows: 1fr;
   align-items: center;
-  /* justify-items: center; */
+  justify-items: space-between;
   border-radius: 0 0 10px 10px;
 }
 
@@ -33,7 +33,6 @@
 
 .card__like-icon {
   transition: opacity ease-in 0.2s;
-  justify-self: center;
 }
 
 .card__like-icon:hover {

@@ -1,13 +1,20 @@
 .gallery {
   max-width: 880px;
+  min-width: 282px;
 }
 
 .gallery__cards {
   display: grid;
-  grid-template-columns: repeat(3, 282px);
+  grid-template-columns: repeat(auto-fit, 282px);
   grid-template-rows: repeat(2, 361px);
-  padding: 0;
-  margin: 47px auto 0;
-  justify-content: space-between;
+  padding: 47px 0 0 0;
+  /* justify-content: space-between; */
+  column-gap: 17px;
   row-gap: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .gallery {
+    width: 282px;
+  }
 }
