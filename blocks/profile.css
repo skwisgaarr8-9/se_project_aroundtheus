@@ -1,9 +1,11 @@
 .profile {
   display: grid;
-  grid-template-columns: repeat(auto-fit, auto);
+  grid-template-columns: 150px minmax(282px, 415px) minmax(60px, 315px);
+  /* grid-template-columns: 1fr 3fr 2fr; */
   grid-template-rows: auto;
   grid-template-areas: "image description add-button";
   align-items: center;
+  justify-content: center;
   max-width: 880px;
   padding-top: 36px;
   width: 100%;
@@ -52,12 +54,13 @@
   background-image: url(../images/edit-icon.svg);
   width: 24px;
   height: 24px;
-  background-color: black;
+  background-color: transparent;
   background-repeat: no-repeat;
   border: 1px solid #fff;
   background-position: center;
   transition: all 0.4s ease;
   grid-area: edit-button;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {
@@ -70,39 +73,43 @@
   background-repeat: no-repeat;
   width: 150px;
   height: 50px;
-  background-color: black;
+  background-color: transparent;
   border: 2px solid #fff;
+  border-radius: 2px;
   grid-area: add-button;
   justify-self: end;
   align-self: center;
   transition: all 0.4s ease;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {
   opacity: 0.6;
 }
 
-@media screen and (max-width: 745px) {
-  .profile__add-button {
-    width: 50px;
+@media screen and (max-width: 780px) {
+  .profile__content {
+    grid-template-columns: minmax(auto, 250px) 24px;
   }
-}
 
-@media screen and (max-width: 555px) {
+  .profile__add-button {
+    width: 80%;
+  }
+
   .profile__name {
     font-size: 28px;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 530px) {
   .profile {
+    grid-template-columns: 282px;
     grid-template-areas:
       "image"
       "description"
       "add-button";
     justify-items: center;
     text-align: center;
-    width: 88%;
   }
 
   .profile__content {
@@ -123,11 +130,13 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
+    background-size: 7.5px 7.5px;
   }
 
   .profile__add-button {
     width: 100%;
     justify-self: center;
     margin-top: 35px;
+    background-size: 16px 16px;
   }
 }

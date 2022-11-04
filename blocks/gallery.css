@@ -7,26 +7,16 @@
 .gallery__cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, 282px);
-  grid-template-rows: repeat(2, 361px);
-  padding: 47px 0 0 0;
+  grid-auto-rows: 361px;
+  margin: 47px 0 0 0;
   column-gap: 17px;
   row-gap: 20px;
-}
-
-@media screen and (max-width: 942px) {
-  .gallery {
-    max-width: 582px;
-  }
-}
-
-@media screen and (max-width: 628px) {
-  .gallery {
-    max-width: 282px;
-  }
+  justify-content: center;
+  padding: 0;
 }
 
 @media screen and (max-width: 480px) {
-  .gallery {
-    max-width: 282px;
+  .gallery__cards {
+    margin: 36px 0 0 0;
   }
 }

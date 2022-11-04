@@ -8,6 +8,7 @@
 .card__image {
   width: 100%;
   border-radius: 10px 10px 0px 0px;
+  object-fit: contain;
 }
 
 .card__content {
@@ -30,10 +31,13 @@
   overflow: hidden;
 }
 
-.card__like-icon {
+.card__like-button {
   transition: opacity 0.4s ease;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.card__like-icon:hover {
+.card__like-button:hover {
   opacity: 0.5;
 }
