@@ -114,7 +114,7 @@
 
   .profile__content {
     grid-template-columns: auto 18px;
-    margin-top: 26px;
+    margin-top: 30px;
     column-gap: 10px;
   }
 
