@@ -9,7 +9,7 @@
   width: 100%;
 }
 .profile__image {
-  height: 120px;
+  width: 120px;
   object-fit: cover;
   border-radius: 50%;
   grid-area: image;
