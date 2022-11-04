@@ -31,7 +31,7 @@
 }
 
 .card__like-icon {
-  transition: opacity ease-in 0.2s;
+  transition: opacity 0.4s ease;
 }
 
 .card__like-icon:hover {

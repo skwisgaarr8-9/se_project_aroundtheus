@@ -9,7 +9,6 @@
   grid-template-columns: repeat(auto-fit, 282px);
   grid-template-rows: repeat(2, 361px);
   padding: 47px 0 0 0;
-  /* justify-content: space-between; */
   column-gap: 17px;
   row-gap: 20px;
 }
