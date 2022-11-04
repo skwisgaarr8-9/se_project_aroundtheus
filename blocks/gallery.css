@@ -1,6 +1,7 @@
 .gallery {
   max-width: 880px;
   min-width: 282px;
+  transition: all ease 0.4s;
 }
 
 .gallery__cards {
@@ -11,6 +12,18 @@
   /* justify-content: space-between; */
   column-gap: 17px;
   row-gap: 20px;
+}
+
+@media screen and (max-width: 942px) {
+  .gallery {
+    max-width: 582px;
+  }
+}
+
+@media screen and (max-width: 628px) {
+  .gallery {
+    max-width: 282px;
+  }
 }
 
 @media screen and (max-width: 480px) {

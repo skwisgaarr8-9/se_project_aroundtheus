@@ -1,21 +1,18 @@
 # Project 3: Around The U.S.
 
-### Overview  
+This project is the third in Practicum's Software Engineering course. It is the preliminary stage of a project that will come to be an interactable profile where users can post photos in their gallery. Other users will be able to add users to their friends list and like photos. The primary skills focused on are using CSS grid and CSS media queries to make the page responsive to different device screen sizes.
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+## Project Features
+
+- Semantic HTML
+- CSS grid
+- CSS media queries
+- Responsive web design
+
+## Future Plans
+
+I hope to add more functionality to the site other the next stages of the course including allowing users to sign up for profiles, interacting with other profiles, adding photos, and editing profiles.
+
+## Preview
+
+<img src="./images/project-3.gif">
