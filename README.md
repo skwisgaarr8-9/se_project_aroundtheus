@@ -16,3 +16,7 @@ I hope to add more functionality to the site other the next stages of the course
 ## Preview
 
 <img src="./images/project-3.gif">
+
+## Live Version
+
+<a href="https://skwisgaarr8-9.github.io/se_project_aroundtheus/">Check it out</a>
