@@ -1,7 +1,6 @@
 .profile {
   display: grid;
   grid-template-columns: 150px minmax(282px, 415px) minmax(60px, 315px);
-  /* grid-template-columns: 1fr 3fr 2fr; */
   grid-template-rows: auto;
   grid-template-areas: "image description add-button";
   align-items: center;
