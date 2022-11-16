@@ -29,3 +29,23 @@ const initialCards = [
     link: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
   },
 ];
+
+let mainContent = document.querySelector(".content");
+let editButton = mainContent.querySelector(".profile__edit-button");
+let modal = mainContent.querySelector(".modal");
+let modalCloseButton = mainContent.querySelector(".form__button_type_close");
+let profileName = mainContent.querySelector(".profile__name");
+let profileTitle = mainContent.querySelector(".profile__title");
+let editNameInput = modal.querySelector(".form__input_content_name");
+let editTitleInput = modal.querySelector(".form__input_content_title");
+
+function toggleModal() {
+  modal.classList.toggle("modal_opened");
+}
+
+editButton.addEventListener("click", function () {
+  toggleModal();
+  editNameInput.value = profileName.textContent;
+  editTitleInput.value = profileTitle.textContent;
+});
+modalCloseButton.addEventListener("click", toggleModal);
