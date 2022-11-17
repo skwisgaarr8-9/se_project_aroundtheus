@@ -33,6 +33,7 @@ const initialCards = [
 const mainContent = document.querySelector(".content");
 const editButton = mainContent.querySelector(".profile__edit-button");
 const modal = mainContent.querySelector(".modal");
+const formElement = modal.querySelector(".modal__container");
 const modalCloseButton = mainContent.querySelector(".form__button_type_close");
 const profileName = mainContent.querySelector(".profile__name");
 const profileTitle = mainContent.querySelector(".profile__title");
@@ -67,7 +68,7 @@ for (const card of initialCards) {
   cardsGallery.append(cardElement);
 }
 
-modal.addEventListener("submit", handleProfileFormSubmit);
+formElement.addEventListener("submit", handleProfileFormSubmit);
 editButton.addEventListener("click", function () {
   toggleModal();
   nameInput.value = profileName.textContent;

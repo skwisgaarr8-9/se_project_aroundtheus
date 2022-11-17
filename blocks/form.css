@@ -16,6 +16,8 @@
 }
 
 .form__input {
+  font-size: 14px;
+  line-height: 1.2;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding: 8px 0 13px;
@@ -37,6 +39,7 @@
   margin: 48px 0 0 0;
   transition: opacity 0.4s ease;
   cursor: pointer;
+  border: none;
 }
 
 .form__button_type_save:hover {
