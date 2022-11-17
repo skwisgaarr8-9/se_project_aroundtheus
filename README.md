@@ -1,6 +1,6 @@
 # Project 3: Around The U.S.
 
-This project is the third in Practicum's Software Engineering course. It is the preliminary stage of a project that will come to be an interactable profile where users can post photos in their gallery. Other users will be able to add users to their friends list and like photos. The primary skills focused on are using CSS grid and CSS media queries to make the page responsive to different device screen sizes.
+This project is the fourth in Practicum's Software Engineering course. It is the second stage of a previous project. This project makes use of JavaScript to show a pop-up window to allow users to edit their profile name and their profile title. Using the `<template>` element and with the help of JavaScript, the page dynamically creates the cards and adds them to the container.
 
 ## Project Features
 
@@ -8,14 +8,15 @@ This project is the third in Practicum's Software Engineering course. It is the 
 - CSS grid
 - CSS media queries
 - Responsive web design
+- JavaScript
 
 ## Future Plans
 
-I hope to add more functionality to the site other the next stages of the course including allowing users to sign up for profiles, interacting with other profiles, adding photos, and editing profiles.
+I hope to add more functionality to the site over the next stages of the course including allowing users to sign up for profiles, interact with other profiles, and add their own cards.
 
 ## Preview
 
-<img src="./images/project-3.gif">
+<img src="./images/project-4.gif">
 
 ## Live Version
 
