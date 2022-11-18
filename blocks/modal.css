@@ -9,29 +9,22 @@
 }
 
 .modal_opened {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal__container {
   background-color: #fff;
+  width: 100%;
   max-width: 430px;
   min-width: 282px;
   position: relative;
   border-radius: 10px;
-  margin: 195px auto 0;
 }
 
 @media screen and (max-width: 530px) {
-  .modal {
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  .modal_opened {
-    display: flex;
-  }
-
   .modal__container {
-    margin: 123px 19px 0 19px;
+    width: 88%;
   }
 }
