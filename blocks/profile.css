@@ -103,7 +103,7 @@
   }
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 530px) and (-webkit-min-device-pixel-ratio: 3) {
   .profile {
     grid-template-columns: 282px;
     grid-template-areas:
