@@ -63,10 +63,9 @@ function getCardElement(data) {
   return cardElement;
 }
 
-for (const card of initialCards) {
-  const cardElement = getCardElement(card);
-  cardsGallery.append(cardElement);
-}
+initialCards.forEach((card) => {
+  cardsGallery.append(getCardElement(card));
+});
 
 formElement.addEventListener("submit", handleProfileFormSubmit);
 editButton.addEventListener("click", function () {
