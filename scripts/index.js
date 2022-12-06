@@ -42,18 +42,18 @@ const titleInput = modal.querySelector(".form__input_content_title");
 const cardsGallery = mainContent.querySelector(".gallery__cards");
 const cardTemplate = mainContent.querySelector("#card").content;
 
-function toggleModal() {
+const toggleModal = () => {
   modal.classList.toggle("modal_opened");
-}
+};
 
-function handleProfileFormSubmit(evt) {
+const handleProfileFormSubmit = (evt) => {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileTitle.textContent = titleInput.value;
   toggleModal();
-}
+};
 
-function getCardElement(data) {
+const getCardElement = (data) => {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
@@ -61,7 +61,7 @@ function getCardElement(data) {
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
   return cardElement;
-}
+};
 
 initialCards.forEach((card) => {
   cardsGallery.append(getCardElement(card));
