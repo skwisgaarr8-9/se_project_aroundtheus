@@ -38,8 +38,12 @@ const cardsGallery = mainContent.querySelector(".gallery__cards");
 const cardTemplate = mainContent.querySelector("#card").content;
 const addModal = document.querySelector(".modal_content_add-place");
 const addButton = mainContent.querySelector(".profile__add-button");
+const addModalCloseButton = addModal.querySelector(".form__button_type_close");
 const editButton = mainContent.querySelector(".profile__edit-button");
 const editModal = document.querySelector(".modal_content_edit-profile");
+const editModalCloseButton = editModal.querySelector(
+  ".form__button_type_close"
+);
 
 const toggleModal = (modal) => {
   modal.classList.toggle("modal_opened");
@@ -76,13 +80,9 @@ const getCardElement = (data) => {
   return cardElement;
 };
 
-const populateGallery = () => {
-  initialCards.forEach((card) => {
-    cardsGallery.append(getCardElement(card));
-  });
-};
-
-populateGallery();
+initialCards.forEach((card) => {
+  cardsGallery.append(getCardElement(card));
+});
 
 profile.addEventListener("click", (evt) => {
   if (evt.target === editButton) {
@@ -105,10 +105,11 @@ profile.addEventListener("click", (evt) => {
   }
 });
 
-editModal
-  .querySelector(".form__button_type_close")
-  .addEventListener("click", () => toggleModal(editModal));
+editModalCloseButton.addEventListener("click", () => toggleModal(editModal));
+addModalCloseButton.addEventListener("click", () => toggleModal(addModal));
 
-addModal
-  .querySelector(".form__button_type_close")
-  .addEventListener("click", () => toggleModal(addModal));
+cardsGallery.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("card__like-button")) {
+    evt.target.classList.toggle("card__like-button-clicked");
+  }
+});
