@@ -40,9 +40,6 @@ const addModal = document.querySelector(".modal_content_add-place");
 const addButton = mainContent.querySelector(".profile__add-button");
 const editButton = mainContent.querySelector(".profile__edit-button");
 const editModal = document.querySelector(".modal_content_edit-profile");
-// const nameInput = document.querySelector(".form__input_content_name");
-// const titleInput = document.querySelector(".form__input_content_title");
-// const linkInput = document.querySelector;
 
 const toggleModal = (modal) => {
   modal.classList.toggle("modal_opened");
@@ -63,7 +60,9 @@ const handleAddPlaceFormSubmit = (evt) => {
   evt.preventDefault();
   const placeName = addModal.querySelector(".form__input_content_title").value;
   const placeLink = addModal.querySelector(".form__input_content_link").value;
-  initialCards.unshift({ name: placeName, link: placeLink });
+  const newPlace = { name: placeName, link: placeLink };
+  const newCard = getCardElement(newPlace);
+  cardsGallery.prepend(newCard);
   toggleModal(addModal);
 };
 
@@ -71,9 +70,9 @@ const getCardElement = (data) => {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
-  cardImage.src = data.link;
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
+  cardImage.src = data.link;
   return cardElement;
 };
 
@@ -98,6 +97,8 @@ profile.addEventListener("click", (evt) => {
   }
   if (evt.target === addButton) {
     toggleModal(addModal);
+    addModal.querySelector(".form__input_content_title").value = "";
+    addModal.querySelector(".form__input_content_link").value = "";
     addModal
       .querySelector(".modal__form")
       .addEventListener("submit", handleAddPlaceFormSubmit);
