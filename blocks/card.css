@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 282px 1fr;
+  position: relative;
 }
 
 .card__image {
@@ -11,6 +12,20 @@
   border-radius: 10px 10px 0px 0px;
   object-fit: fill;
   overflow: hidden;
+}
+
+.card__delete-button {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  width: 18px;
+  height: 19px;
+  transition: opacity 0.4s ease;
+  cursor: pointer;
+}
+
+.card__delete-button:hover {
+  opacity: 0.6;
 }
 
 .card__content {

@@ -112,4 +112,7 @@ cardsGallery.addEventListener("click", (evt) => {
   if (evt.target.classList.contains("card__like-button")) {
     evt.target.classList.toggle("card__like-button-clicked");
   }
+  if (evt.target.classList.contains("card__delete-button")) {
+    evt.target.closest(".card").remove();
+  }
 });
