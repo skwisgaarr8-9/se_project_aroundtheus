@@ -22,6 +22,10 @@
   height: 19px;
   transition: opacity 0.4s ease;
   cursor: pointer;
+  background-image: url(../images/trash-can.svg);
+  border: none;
+  background-color: transparent;
+  padding: 0;
 }
 
 .card__delete-button:hover {

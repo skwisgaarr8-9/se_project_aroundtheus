@@ -30,20 +30,44 @@ const initialCards = [
   },
 ];
 
-const mainContent = document.querySelector(".content");
-const profile = mainContent.querySelector(".profile");
-const profileName = mainContent.querySelector(".profile__name");
-const profileTitle = mainContent.querySelector(".profile__title");
-const cardsGallery = mainContent.querySelector(".gallery__cards");
-const cardTemplate = mainContent.querySelector("#card").content;
+//modals
 const addModal = document.querySelector(".modal_content_add-place");
-const addButton = mainContent.querySelector(".profile__add-button");
-const addModalCloseButton = addModal.querySelector(".form__button_type_close");
-const editButton = mainContent.querySelector(".profile__edit-button");
 const editModal = document.querySelector(".modal_content_edit-profile");
-const editModalCloseButton = editModal.querySelector(
-  ".form__button_type_close"
+const imagePreviewModal = document.querySelector(".modal_content-card-preview");
+
+//buttons
+const addButton = document.querySelector(".profile__add-button");
+const editButton = document.querySelector(".profile__edit-button");
+const addModalCloseButton = addModal.querySelector(".modal__close-button");
+const editModalCloseButton = editModal.querySelector(".modal__close-button");
+const imageModalCloseButton = imagePreviewModal.querySelector(
+  ".modal__close-button"
 );
+
+//profile nodes
+const profile = document.querySelector(".profile");
+const profileName = document.querySelector(".profile__name");
+const profileTitle = document.querySelector(".profile__title");
+
+//gallery wrapper
+const cardsGallery = document.querySelector(".gallery__cards");
+
+//template
+const cardTemplate = document.querySelector("#card").content;
+
+//input values
+const nameInputValue = editModal.querySelector(".form__input_content_name");
+const descriptionInputvalue = editModal.querySelector(
+  ".form__input_content_description"
+);
+const cardNameInputValue = addModal.querySelector(
+  ".form__input_content_card-name"
+);
+const cardLinkInputValue = addModal.querySelector(
+  ".form__input_content_card-link"
+);
+const imageElement = imagePreviewModal.querySelector(".modal__image");
+const imageCaption = imagePreviewModal.querySelector(".modal__caption");
 
 const toggleModal = (modal) => {
   modal.classList.toggle("modal_opened");
@@ -51,22 +75,19 @@ const toggleModal = (modal) => {
 
 const handleProfileEditFormSubmit = (evt) => {
   evt.preventDefault();
-  profileName.textContent = editModal.querySelector(
-    ".form__input_content_name"
-  ).value;
-  profileTitle.textContent = editModal.querySelector(
-    ".form__input_content_title"
-  ).value;
+  profileName.textContent = nameInputValue.value;
+  profileTitle.textContent = descriptionInputvalue.value;
   toggleModal(editModal);
 };
 
 const handleAddPlaceFormSubmit = (evt) => {
   evt.preventDefault();
-  const placeName = addModal.querySelector(".form__input_content_title").value;
-  const placeLink = addModal.querySelector(".form__input_content_link").value;
+  const placeName = cardNameInputValue.value;
+  const placeLink = cardLinkInputValue.value;
   const newPlace = { name: placeName, link: placeLink };
-  const newCard = getCardElement(newPlace);
-  cardsGallery.prepend(newCard);
+  cardsGallery.prepend(getCardElement(newPlace));
+  cardNameInputValue.value = "";
+  cardLinkInputValue.value = "";
   toggleModal(addModal);
 };
 
@@ -74,45 +95,44 @@ const getCardElement = (data) => {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardTitle = cardElement.querySelector(".card__title");
   const cardImage = cardElement.querySelector(".card__image");
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
   cardImage.src = data.link;
+
+  likeButton.addEventListener("click", handleLikeClick);
+  deleteButton.addEventListener("click", handleDeleteClick);
+  cardImage.addEventListener("click", () => handlePicturePreview(data));
   return cardElement;
 };
 
-initialCards.forEach((card) => {
-  cardsGallery.append(getCardElement(card));
-});
+const handleLikeClick = (evt) => {
+  evt.target.classList.toggle("card__like-button-clicked");
+};
 
-profile.addEventListener("click", (evt) => {
-  if (evt.target === editButton) {
-    toggleModal(editModal);
-    editModal.querySelector(".form__input_content_name").value =
-      profileName.textContent;
-    editModal.querySelector(".form__input_content_title").value =
-      profileTitle.textContent;
-    editModal
-      .querySelector(".modal__form")
-      .addEventListener("submit", handleProfileEditFormSubmit);
-  }
-  if (evt.target === addButton) {
-    toggleModal(addModal);
-    addModal.querySelector(".form__input_content_title").value = "";
-    addModal.querySelector(".form__input_content_link").value = "";
-    addModal
-      .querySelector(".modal__form")
-      .addEventListener("submit", handleAddPlaceFormSubmit);
-  }
-});
+const handleDeleteClick = (evt) => {
+  evt.target.closest(".card").remove();
+};
+
+const handlePicturePreview = (data) => {
+  imageElement.src = data.link;
+  imageElement.alt = `${data.name}`;
+  imageCaption.textContent = data.name;
+
+  toggleModal(imagePreviewModal);
+};
+
+editModal.addEventListener("submit", handleProfileEditFormSubmit);
+addModal.addEventListener("submit", handleAddPlaceFormSubmit);
+
+editButton.addEventListener("click", () => toggleModal(editModal));
+addButton.addEventListener("click", () => toggleModal(addModal));
 
 editModalCloseButton.addEventListener("click", () => toggleModal(editModal));
 addModalCloseButton.addEventListener("click", () => toggleModal(addModal));
 
-cardsGallery.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("card__like-button")) {
-    evt.target.classList.toggle("card__like-button-clicked");
-  }
-  if (evt.target.classList.contains("card__delete-button")) {
-    evt.target.closest(".card").remove();
-  }
+initialCards.forEach((card) => {
+  cardsGallery.append(getCardElement(card));
 });

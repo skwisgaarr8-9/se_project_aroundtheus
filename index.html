@@ -41,20 +41,6 @@
 
         <section class="gallery page__gallery">
           <ul class="gallery__cards"></ul>
-          <template id="card">
-            <li class="card">
-              <img class="card__image" />
-              <img
-                class="card__delete-button"
-                src="./images/trash-can.svg"
-                alt="A small white trash can"
-              />
-              <div class="card__content">
-                <h2 class="card__title"></h2>
-                <button class="card__like-button" type="button"></button>
-              </div>
-            </li>
-          </template>
         </section>
       </main>
 
@@ -72,7 +58,7 @@
                 placeholder="Name"
               />
               <input
-                class="form__input form__input_content_title"
+                class="form__input form__input_content_description"
                 type="text"
                 placeholder="Description"
               />
@@ -81,10 +67,7 @@
               </button>
             </fieldset>
           </form>
-          <button
-            class="form__button form__button_type_close"
-            type="button"
-          ></button>
+          <button class="modal__close-button" type="button"></button>
         </div>
       </div>
       <div class="modal modal_content_add-place">
@@ -93,12 +76,12 @@
             <fieldset class="form__fieldset">
               <h2 class="form__heading">New Place</h2>
               <input
-                class="form__input form__input_content_title"
+                class="form__input form__input_content_card-name"
                 type="text"
                 placeholder="Title"
               />
               <input
-                class="form__input form__input_content_link"
+                class="form__input form__input_content_card-link"
                 type="text"
                 placeholder="Image Link"
               />
@@ -107,12 +90,26 @@
               </button>
             </fieldset>
           </form>
-          <button
-            class="form__button form__button_type_close"
-            type="button"
-          ></button>
+          <button class="modal__close-button" type="button"></button>
         </div>
       </div>
+      <div class="modal modal_content-card-preview">
+        <div class="modal__image-container">
+          <img class="modal__image" src="" alt="" />
+          <p class="modal__caption"></p>
+          <button class="modal__close-button" type="button"></button>
+        </div>
+      </div>
+      <template id="card">
+        <li class="card">
+          <img class="card__image" />
+          <button class="card__delete-button" type="button"></button>
+          <div class="card__content">
+            <h2 class="card__title"></h2>
+            <button class="card__like-button" type="button"></button>
+          </div>
+        </li>
+      </template>
     </div>
     <script src="./scripts/index.js"></script>
   </body>

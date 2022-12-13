@@ -23,8 +23,47 @@
   border-radius: 10px;
 }
 
+.modal__close-button {
+  position: absolute;
+  background: transparent;
+  background-image: url(../images/close-icon.svg);
+  right: -40px;
+  top: -40px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: opacity 0.4s ease;
+  padding: 0;
+  cursor: pointer;
+}
+
+.modal__close-button:hover {
+  opacity: 0.6;
+}
+
+/* .modal__image-container {
+  max-height: 200px;
+  max-width: 100px;
+  object-fit: contain;
+} */
+
+/* .modal__image {
+  object-fit: contain;
+  max-width: 75vw;
+  max-height: 75vw;
+} */
+
 @media screen and (max-width: 530px) {
   .modal__container {
     width: 88%;
+  }
+
+  .modal__close-button {
+    right: 5px;
+    top: -50px;
+    width: 26px;
+    height: 26px;
   }
 }
