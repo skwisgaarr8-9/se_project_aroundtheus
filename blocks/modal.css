@@ -1,17 +1,32 @@
+/* @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+} */
+
 .modal {
-  display: none;
+  display: flex;
   position: fixed;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  opacity: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  transition: visibility 0s 0.5s, opacity 0.5s;
 }
 
 .modal_opened {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s;
 }
 
 .modal__container {
