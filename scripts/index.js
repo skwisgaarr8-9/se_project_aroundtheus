@@ -132,6 +132,9 @@ addButton.addEventListener("click", () => toggleModal(addModal));
 
 editModalCloseButton.addEventListener("click", () => toggleModal(editModal));
 addModalCloseButton.addEventListener("click", () => toggleModal(addModal));
+imageModalCloseButton.addEventListener("click", () =>
+  toggleModal(imagePreviewModal)
+);
 
 initialCards.forEach((card) => {
   cardsGallery.append(getCardElement(card));
