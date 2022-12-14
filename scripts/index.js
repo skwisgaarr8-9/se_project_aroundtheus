@@ -124,10 +124,16 @@ const handlePicturePreview = (data) => {
   toggleModal(imagePreviewModal);
 };
 
+const handleEditButtonClick = () => {
+  nameInputValue.value = profileName.textContent;
+  descriptionInputvalue.value = profileTitle.textContent;
+  toggleModal(editModal);
+};
+
 editModal.addEventListener("submit", handleProfileEditFormSubmit);
 addModal.addEventListener("submit", handleAddPlaceFormSubmit);
 
-editButton.addEventListener("click", () => toggleModal(editModal));
+editButton.addEventListener("click", handleEditButtonClick);
 addButton.addEventListener("click", () => toggleModal(addModal));
 
 editModalCloseButton.addEventListener("click", () => toggleModal(editModal));
