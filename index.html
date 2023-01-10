@@ -53,17 +53,25 @@
             <fieldset class="form__fieldset">
               <h2 class="form__heading">Edit Profile</h2>
               <input
+                id="name-input"
                 class="form__input form__input_content_name"
                 type="text"
                 placeholder="Name"
                 required
+                minlength="2"
+                maxlength="40"
               />
+              <span class="form__input-error name-input-error"></span>
               <input
+                id="description-input"
                 class="form__input form__input_content_description"
                 type="text"
                 placeholder="Description"
                 required
+                minlength="2"
+                maxlength="200"
               />
+              <span class="form__input-error description-input-error"></span>
               <button class="form__button form__button_type_save" type="submit">
                 Save
               </button>
@@ -78,17 +86,23 @@
             <fieldset class="form__fieldset">
               <h2 class="form__heading">New Place</h2>
               <input
+                id="title-input"
                 class="form__input form__input_content_card-name"
                 type="text"
                 placeholder="Title"
                 required
+                minlength="1"
+                maxlength="30"
               />
+              <span class="form__input-error title-input-error"></span>
               <input
+                id="link-input"
                 class="form__input form__input_content_card-link"
-                type="text"
+                type="url"
                 placeholder="Image Link"
                 required
               />
+              <span class="form__input-error link-input-error"></span>
               <button class="form__button form__button_type_save" type="submit">
                 Save
               </button>
