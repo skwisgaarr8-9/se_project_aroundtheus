@@ -173,3 +173,4 @@ imagePreviewPopupCloseButton.addEventListener("click", () =>
 initialCards.forEach((card) => {
   cardsGallery.append(getCardElement(card));
 });
+fillProfileForm();
