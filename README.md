@@ -17,7 +17,8 @@ I hope to add more functionality to the site over the next stages of the course 
 
 ## Preview
 
-<video src="./images/demos/project-6.mkv" controls></video>
+<img src="./images/demos/project-6-demo1.jpg">
+<img src="./images/demos/project-6-demo2.jpg">
 
 ## Live Version
 
