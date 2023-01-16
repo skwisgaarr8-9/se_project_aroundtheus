@@ -160,6 +160,13 @@ const clickClosePopup = (evt) => {
   }
 };
 
+const handleEscKeyPress = (evt) => {
+  if (evt.key === "Escape") {
+    closePopup(editProfilePopup);
+    closePopup(addCardPopup);
+  }
+};
+
 editProfilePopup.addEventListener("submit", handleProfileEditFormSubmit);
 addCardPopup.addEventListener("submit", handleAddPlaceFormSubmit);
 
@@ -178,6 +185,8 @@ imagePreviewPopupCloseButton.addEventListener("click", () =>
 
 editProfilePopup.addEventListener("mousedown", clickClosePopup);
 addCardPopup.addEventListener("mousedown", clickClosePopup);
+
+document.addEventListener("keydown", handleEscKeyPress);
 
 initialCards.forEach((card) => {
   cardsGallery.append(getCardElement(card));
