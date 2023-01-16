@@ -85,14 +85,16 @@ const cardLinkInputValue = addCardPopup.querySelector(
 const imageElement = imagePreviewPopup.querySelector(".modal__image");
 const imageCaption = imagePreviewPopup.querySelector(".modal__caption");
 
-//open and close popups functions
+//open and close popup functions
 const openPopup = (popup) => {
   popup.classList.add("modal_opened");
   document.addEventListener("keydown", handleEscKeyPress);
+  popup.addEventListener("mousedown", closePopupOnOutsideClick);
 };
 const closePopup = (popup) => {
   popup.classList.remove("modal_opened");
   document.removeEventListener("keydown", handleEscKeyPress);
+  popup.removeEventListener("mousedown", closePopupOnOutsideClick);
 };
 
 const handleProfileEditFormSubmit = (evt) => {
@@ -108,8 +110,13 @@ const handleAddPlaceFormSubmit = (evt) => {
   const placeLink = cardLinkInputValue.value;
   const newPlace = { name: placeName, link: placeLink };
   const addPlaceForm = addCardPopup.querySelector(".form");
+  const inputList = [...addPlaceForm.querySelectorAll(configObj.inputSelector)];
+  const buttonElement = addPlaceForm.querySelector(
+    configObj.submitButtonSelector
+  );
   cardsGallery.prepend(getCardElement(newPlace));
   addPlaceForm.reset();
+  toggleButtonState(inputList, buttonElement, configObj.inactiveButtonClass);
   closePopup(addCardPopup);
 };
 
@@ -152,30 +159,39 @@ const fillProfileForm = () => {
 };
 
 const handleEditButtonClick = () => {
+  const inputList = [
+    ...editProfilePopup.querySelectorAll(configObj.inputSelector),
+  ];
+  const buttonElement = editProfilePopup.querySelector(
+    configObj.submitButtonSelector
+  );
   fillProfileForm();
   openPopup(editProfilePopup);
+  toggleButtonState(inputList, buttonElement, configObj.inactiveButtonClass);
 };
 
-const clickClosePopup = (evt) => {
+const closePopupOnOutsideClick = (evt) => {
   if (evt.target.classList.contains("modal")) {
     closePopup(evt.target);
   }
 };
 
 const handleEscKeyPress = (evt) => {
+  const openedPopup = document.querySelector(".modal_opened");
   if (evt.key === "Escape") {
-    closePopup(editProfilePopup);
-    closePopup(addCardPopup);
-    closePopup(imagePreviewPopup);
+    closePopup(openedPopup);
   }
 };
 
+//submit event listeners
 editProfilePopup.addEventListener("submit", handleProfileEditFormSubmit);
 addCardPopup.addEventListener("submit", handleAddPlaceFormSubmit);
 
+//open popups click event listeners
 editProfileButton.addEventListener("click", handleEditButtonClick);
 addCardButton.addEventListener("click", () => openPopup(addCardPopup));
 
+//close popups click event listeners
 editProfilePopupCloseButton.addEventListener("click", () =>
   closePopup(editProfilePopup)
 );
@@ -186,11 +202,7 @@ imagePreviewPopupCloseButton.addEventListener("click", () =>
   closePopup(imagePreviewPopup)
 );
 
-editProfilePopup.addEventListener("mousedown", clickClosePopup);
-addCardPopup.addEventListener("mousedown", clickClosePopup);
-imagePreviewPopup.addEventListener("mousedown", clickClosePopup);
-
+//populate card gallery
 initialCards.forEach((card) => {
   cardsGallery.append(getCardElement(card));
 });
-fillProfileForm();
