@@ -154,6 +154,12 @@ const handleEditButtonClick = () => {
   openPopup(editProfilePopup);
 };
 
+const clickClosePopup = (evt) => {
+  if (evt.target.classList.contains("modal")) {
+    closePopup(evt.target);
+  }
+};
+
 editProfilePopup.addEventListener("submit", handleProfileEditFormSubmit);
 addCardPopup.addEventListener("submit", handleAddPlaceFormSubmit);
 
@@ -169,6 +175,9 @@ addCardPopupCloseButton.addEventListener("click", () =>
 imagePreviewPopupCloseButton.addEventListener("click", () =>
   closePopup(imagePreviewPopup)
 );
+
+editProfilePopup.addEventListener("mousedown", clickClosePopup);
+addCardPopup.addEventListener("mousedown", clickClosePopup);
 
 initialCards.forEach((card) => {
   cardsGallery.append(getCardElement(card));
