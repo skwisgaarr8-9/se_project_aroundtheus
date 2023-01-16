@@ -166,6 +166,7 @@ const handleEscKeyPress = (evt) => {
   if (evt.key === "Escape") {
     closePopup(editProfilePopup);
     closePopup(addCardPopup);
+    closePopup(imagePreviewPopup);
   }
 };
 
@@ -187,6 +188,7 @@ imagePreviewPopupCloseButton.addEventListener("click", () =>
 
 editProfilePopup.addEventListener("mousedown", clickClosePopup);
 addCardPopup.addEventListener("mousedown", clickClosePopup);
+imagePreviewPopup.addEventListener("mousedown", clickClosePopup);
 
 initialCards.forEach((card) => {
   cardsGallery.append(getCardElement(card));
