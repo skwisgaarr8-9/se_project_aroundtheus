@@ -88,9 +88,11 @@ const imageCaption = imagePreviewPopup.querySelector(".modal__caption");
 //open and close popups functions
 const openPopup = (popup) => {
   popup.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEscKeyPress);
 };
 const closePopup = (popup) => {
   popup.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleEscKeyPress);
 };
 
 const handleProfileEditFormSubmit = (evt) => {
@@ -185,8 +187,6 @@ imagePreviewPopupCloseButton.addEventListener("click", () =>
 
 editProfilePopup.addEventListener("mousedown", clickClosePopup);
 addCardPopup.addEventListener("mousedown", clickClosePopup);
-
-document.addEventListener("keydown", handleEscKeyPress);
 
 initialCards.forEach((card) => {
   cardsGallery.append(getCardElement(card));
