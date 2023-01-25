@@ -1,3 +1,14 @@
+// import { configObj } from "./index.js";
+
+export const configObj = {
+  formSelector: ".modal__form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__error_visible",
+};
+
 const showErrorInput = (
   formElement,
   inputElement,
@@ -38,7 +49,11 @@ const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => !inputElement.validity.valid);
 };
 
-const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
+export const toggleButtonState = (
+  inputList,
+  buttonElement,
+  inactiveButtonClass
+) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.disabled = true;
     buttonElement.classList.add(inactiveButtonClass);

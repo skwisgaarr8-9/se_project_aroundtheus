@@ -1,3 +1,12 @@
+import { Card, imagePreviewPopup } from "./Card.js";
+import {
+  openPopup,
+  closePopup,
+  handleEditButtonClick,
+  handleProfileEditFormSubmit,
+  handleAddPlaceFormSubmit,
+} from "./utils.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -30,20 +39,12 @@ const initialCards = [
   },
 ];
 
-//validation configuration object
-const configObj = {
-  formSelector: ".modal__form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__button",
-  inactiveButtonClass: "form__button_disabled",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__error_visible",
-};
+//template selector
+const templateSelector = "#card";
 
 //modals
 const addCardPopup = document.querySelector(".modal_content_add-place");
 const editProfilePopup = document.querySelector(".modal_content_edit-profile");
-const imagePreviewPopup = document.querySelector(".modal_content-card-preview");
 
 //buttons
 const addCardButton = document.querySelector(".profile__add-button");
@@ -58,130 +59,8 @@ const imagePreviewPopupCloseButton = imagePreviewPopup.querySelector(
   ".modal__close-button"
 );
 
-//profile nodes
-const profile = document.querySelector(".profile");
-const profileName = document.querySelector(".profile__name");
-const profileTitle = document.querySelector(".profile__title");
-
 //gallery wrapper
 const cardsGallery = document.querySelector(".gallery__cards");
-
-//template
-const cardTemplate = document.querySelector("#card").content;
-
-//input values
-const nameInputValue = editProfilePopup.querySelector(
-  ".form__input_content_name"
-);
-const descriptionInputvalue = editProfilePopup.querySelector(
-  ".form__input_content_description"
-);
-const cardNameInputValue = addCardPopup.querySelector(
-  ".form__input_content_card-name"
-);
-const cardLinkInputValue = addCardPopup.querySelector(
-  ".form__input_content_card-link"
-);
-const imageElement = imagePreviewPopup.querySelector(".modal__image");
-const imageCaption = imagePreviewPopup.querySelector(".modal__caption");
-
-//open and close popup functions
-const openPopup = (popup) => {
-  popup.classList.add("modal_opened");
-  document.addEventListener("keydown", handleEscKeyPress);
-  popup.addEventListener("mousedown", closePopupOnOutsideClick);
-};
-const closePopup = (popup) => {
-  popup.classList.remove("modal_opened");
-  document.removeEventListener("keydown", handleEscKeyPress);
-  popup.removeEventListener("mousedown", closePopupOnOutsideClick);
-};
-
-const handleProfileEditFormSubmit = (evt) => {
-  evt.preventDefault();
-  profileName.textContent = nameInputValue.value;
-  profileTitle.textContent = descriptionInputvalue.value;
-  closePopup(editProfilePopup);
-};
-
-const handleAddPlaceFormSubmit = (evt) => {
-  evt.preventDefault();
-  const placeName = cardNameInputValue.value;
-  const placeLink = cardLinkInputValue.value;
-  const newPlace = { name: placeName, link: placeLink };
-  const addPlaceForm = addCardPopup.querySelector(".form");
-  const inputList = [...addPlaceForm.querySelectorAll(configObj.inputSelector)];
-  const buttonElement = addPlaceForm.querySelector(
-    configObj.submitButtonSelector
-  );
-  cardsGallery.prepend(getCardElement(newPlace));
-  addPlaceForm.reset();
-  toggleButtonState(inputList, buttonElement, configObj.inactiveButtonClass);
-  closePopup(addCardPopup);
-};
-
-const getCardElement = (data) => {
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardImage = cardElement.querySelector(".card__image");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-
-  cardImage.alt = data.name;
-  cardTitle.textContent = data.name;
-  cardImage.src = data.link;
-
-  likeButton.addEventListener("click", handleLikeClick);
-  deleteButton.addEventListener("click", handleDeleteClick);
-  cardImage.addEventListener("click", () => handlePicturePreview(data));
-  return cardElement;
-};
-
-const handleLikeClick = (evt) => {
-  evt.target.classList.toggle("card__like-button-clicked");
-};
-
-const handleDeleteClick = (evt) => {
-  evt.target.closest(".card").remove();
-};
-
-const handlePicturePreview = (data) => {
-  imageElement.src = data.link;
-  imageElement.alt = data.name;
-  imageCaption.textContent = data.name;
-
-  openPopup(imagePreviewPopup);
-};
-
-const fillProfileForm = () => {
-  nameInputValue.value = profileName.textContent;
-  descriptionInputvalue.value = profileTitle.textContent;
-};
-
-const handleEditButtonClick = () => {
-  const inputList = [
-    ...editProfilePopup.querySelectorAll(configObj.inputSelector),
-  ];
-  const buttonElement = editProfilePopup.querySelector(
-    configObj.submitButtonSelector
-  );
-  fillProfileForm();
-  openPopup(editProfilePopup);
-  toggleButtonState(inputList, buttonElement, configObj.inactiveButtonClass);
-};
-
-const closePopupOnOutsideClick = (evt) => {
-  if (evt.target.classList.contains("modal")) {
-    closePopup(evt.target);
-  }
-};
-
-const handleEscKeyPress = (evt) => {
-  const openedPopup = document.querySelector(".modal_opened");
-  if (evt.key === "Escape") {
-    closePopup(openedPopup);
-  }
-};
 
 //submit event listeners
 editProfilePopup.addEventListener("submit", handleProfileEditFormSubmit);
@@ -203,6 +82,9 @@ imagePreviewPopupCloseButton.addEventListener("click", () =>
 );
 
 //populate card gallery
-initialCards.forEach((card) => {
-  cardsGallery.append(getCardElement(card));
+initialCards.forEach((item) => {
+  const cardElement = new Card(item, templateSelector);
+  cardsGallery.append(cardElement.generateCard());
 });
+
+export { addCardPopup, editProfilePopup };
