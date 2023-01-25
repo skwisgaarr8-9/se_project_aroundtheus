@@ -87,4 +87,4 @@ initialCards.forEach((item) => {
   cardsGallery.append(cardElement.generateCard());
 });
 
-export { addCardPopup, editProfilePopup };
+export { addCardPopup, editProfilePopup, cardsGallery, templateSelector };

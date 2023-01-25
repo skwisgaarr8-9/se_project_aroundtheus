@@ -1,4 +1,10 @@
-import { editProfilePopup, addCardPopup } from "./index.js";
+import { Card } from "./Card.js";
+import {
+  editProfilePopup,
+  addCardPopup,
+  cardsGallery,
+  templateSelector,
+} from "./index.js";
 import { configObj, toggleButtonState } from "./validate.js";
 
 //profile nodes
@@ -68,7 +74,8 @@ const handleAddPlaceFormSubmit = (evt) => {
   const buttonElement = addPlaceForm.querySelector(
     configObj.submitButtonSelector
   );
-  cardsGallery.prepend(getCardElement(newPlace));
+  const cardElement = new Card(newPlace, templateSelector);
+  cardsGallery.prepend(cardElement.generateCard());
   addPlaceForm.reset();
   toggleButtonState(inputList, buttonElement, configObj.inactiveButtonClass);
   closePopup(addCardPopup);
