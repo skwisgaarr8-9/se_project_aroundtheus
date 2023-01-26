@@ -5,7 +5,7 @@ import {
   cardsGallery,
   templateSelector,
 } from "./index.js";
-import { configObj, toggleButtonState } from "./validate.js";
+import { FormValidator, configObj } from "./FormValidator.js";
 
 //profile nodes
 const profileName = document.querySelector(".profile__name");
@@ -54,30 +54,45 @@ const handleEditButtonClick = () => {
   const buttonElement = editProfilePopup.querySelector(
     configObj.submitButtonSelector
   );
+  const editProfileForm = editProfilePopup.querySelector(
+    configObj.formSelector
+  );
+  const editProfileFormValidator = new FormValidator(
+    configObj,
+    editProfileForm
+  );
+
   fillProfileForm();
   openPopup(editProfilePopup);
-  toggleButtonState(inputList, buttonElement, configObj.inactiveButtonClass);
+  editProfileFormValidator.resetValidation(inputList, buttonElement);
 };
 const handleProfileEditFormSubmit = (evt) => {
   evt.preventDefault();
+
   profileName.textContent = nameInputValue.value;
   profileTitle.textContent = descriptionInputvalue.value;
+
   closePopup(editProfilePopup);
 };
+
 const handleAddPlaceFormSubmit = (evt) => {
   evt.preventDefault();
+
   const placeName = cardNameInputValue.value;
   const placeLink = cardLinkInputValue.value;
   const newPlace = { name: placeName, link: placeLink };
-  const addPlaceForm = addCardPopup.querySelector(".form");
+  const addPlaceForm = addCardPopup.querySelector(configObj.formSelector);
   const inputList = [...addPlaceForm.querySelectorAll(configObj.inputSelector)];
   const buttonElement = addPlaceForm.querySelector(
     configObj.submitButtonSelector
   );
   const cardElement = new Card(newPlace, templateSelector);
+  const addPlaceFormValidator = new FormValidator(configObj, addPlaceForm);
+
   cardsGallery.prepend(cardElement.generateCard());
   addPlaceForm.reset();
-  toggleButtonState(inputList, buttonElement, configObj.inactiveButtonClass);
+  addPlaceFormValidator.resetValidation(inputList, buttonElement);
+
   closePopup(addCardPopup);
 };
 

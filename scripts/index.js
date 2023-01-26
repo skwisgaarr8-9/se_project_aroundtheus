@@ -6,6 +6,7 @@ import {
   handleProfileEditFormSubmit,
   handleAddPlaceFormSubmit,
 } from "./utils.js";
+import { FormValidator, configObj } from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -62,13 +63,18 @@ const imagePreviewPopupCloseButton = imagePreviewPopup.querySelector(
 //gallery wrapper
 const cardsGallery = document.querySelector(".gallery__cards");
 
+//list of forms
+const formList = [...document.querySelectorAll(configObj.formSelector)];
+
 //submit event listeners
 editProfilePopup.addEventListener("submit", handleProfileEditFormSubmit);
 addCardPopup.addEventListener("submit", handleAddPlaceFormSubmit);
 
 //open popups click event listeners
 editProfileButton.addEventListener("click", handleEditButtonClick);
-addCardButton.addEventListener("click", () => openPopup(addCardPopup));
+addCardButton.addEventListener("click", () => {
+  openPopup(addCardPopup);
+});
 
 //close popups click event listeners
 editProfilePopupCloseButton.addEventListener("click", () =>
@@ -85,6 +91,12 @@ imagePreviewPopupCloseButton.addEventListener("click", () =>
 initialCards.forEach((item) => {
   const cardElement = new Card(item, templateSelector);
   cardsGallery.append(cardElement.generateCard());
+});
+
+//validate each form
+formList.forEach((formElement) => {
+  const formValidator = new FormValidator(configObj, formElement);
+  formValidator.enableValidation();
 });
 
 export { addCardPopup, editProfilePopup, cardsGallery, templateSelector };
