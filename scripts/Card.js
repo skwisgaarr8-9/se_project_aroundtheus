@@ -15,20 +15,20 @@ class Card {
     return cardTemplate;
   }
 
-  _handleLikeClick(evt) {
-    evt.target.classList.toggle("card__like-button-clicked");
-  }
+  _handleLikeClick = () => {
+    this._likeButton.classList.toggle("card__like-button-clicked");
+  };
 
   _handleDeleteClick = () => {
     this._element.remove();
   };
 
   _setEventListeners() {
-    const likeButton = this._element.querySelector(".card__like-button");
+    this._likeButton = this._element.querySelector(".card__like-button");
     const deleteButton = this._element.querySelector(".card__delete-button");
     const cardImage = this._element.querySelector(".card__image");
 
-    likeButton.addEventListener("click", this._handleLikeClick);
+    this._likeButton.addEventListener("click", this._handleLikeClick);
     deleteButton.addEventListener("click", this._handleDeleteClick);
     cardImage.addEventListener("click", this._handleImageClick);
   }
