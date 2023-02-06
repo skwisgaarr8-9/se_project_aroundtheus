@@ -130,6 +130,7 @@ imagePreviewPopupCloseButton.addEventListener("click", () =>
   closePopup(imagePreviewPopup)
 );
 
+//create cardGallery section
 const cardGallery = new Section(
   {
     items: initialCards,
