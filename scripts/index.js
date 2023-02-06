@@ -2,6 +2,7 @@ import { Card } from "./Card.js";
 import { openPopup, closePopup } from "./utils.js";
 import { FormValidator } from "./FormValidator.js";
 import { configObj, initialCards } from "./constants.js";
+import { Section } from "./Section.js";
 
 //profile nodes
 const profileName = document.querySelector(".profile__name");
@@ -105,7 +106,7 @@ const createCard = (data) => {
 };
 
 //validate forms
-const validateForms = () => {
+const enableValidation = () => {
   addPlaceFormValidator.enableValidation();
   editProfileFormValidator.enableValidation();
 };
@@ -129,10 +130,22 @@ imagePreviewPopupCloseButton.addEventListener("click", () =>
   closePopup(imagePreviewPopup)
 );
 
-//populate card gallery
-initialCards.forEach((item) => {
-  const cardElement = createCard(item);
-  cardsGallery.append(cardElement);
-});
+const cardGallery = new Section(
+  {
+    items: initialCards,
+    renderer: (card) => {
+      const cardElement = createCard(card);
+      cardGallery.setItem(cardElement);
+    },
+  },
+  ".gallery__cards"
+);
 
-validateForms();
+cardGallery.renderItems();
+//populate card gallery
+// initialCards.forEach((item) => {
+//   const cardElement = createCard(item);
+//   cardsGallery.append(cardElement);
+// });
+
+enableValidation();
