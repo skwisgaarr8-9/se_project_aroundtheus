@@ -3,6 +3,7 @@ import { openPopup, closePopup } from "./utils.js";
 import { FormValidator } from "./FormValidator.js";
 import { configObj, initialCards } from "./constants.js";
 import { Section } from "./Section.js";
+import { PopupWithForm } from "./PopupWithForm.js";
 
 //profile nodes
 const profileName = document.querySelector(".profile__name");
