@@ -1,49 +1,35 @@
 import { Card } from "./Card.js";
-import { openPopup, closePopup } from "./utils.js";
 import { FormValidator } from "./FormValidator.js";
 import { configObj, initialCards } from "./constants.js";
 import { Section } from "./Section.js";
 import { PopupWithForm } from "./PopupWithForm.js";
 import { PopupWithImage } from "./PopupWithImage.js";
+import { UserInfo } from "./UserInfo.js";
 
 //profile nodes
-const profileName = document.querySelector(".profile__name");
-const profileTitle = document.querySelector(".profile__title");
+const profileNameSelector = ".profile__name";
+const profileDescriptionSelector = ".profile__title";
 
 //input values
 const nameInputValue = document.querySelector(".form__input_content_name");
-const descriptionInputvalue = document.querySelector(
+const descriptionInputValue = document.querySelector(
   ".form__input_content_description"
-);
-const cardNameInputValue = document.querySelector(
-  ".form__input_content_card-name"
-);
-const cardLinkInputValue = document.querySelector(
-  ".form__input_content_card-link"
 );
 
 //template selector
 const templateSelector = "#card";
 
-// //modals
-// const addCardPopup = document.querySelector(".modal_content_add-place");
-// const editProfilePopup = document.querySelector(".modal_content_edit-profile");
-
+// //modals selectors
 const addCardPopupSelector = ".modal_content_add-place";
 const editProfilePopupSelector = ".modal_content_edit-profile";
 const imagePreviewPopupSelector = ".modal_content-card-preview";
 
-//image preview popup elements
-// const imagePreviewPopup = document.querySelector(".modal_content-card-preview");
-// const imageElement = imagePreviewPopup.querySelector(".modal__image");
-// const imageCaption = imagePreviewPopup.querySelector(".modal__caption");
-
 //forms
 const editProfileForm = document
-  .querySelector(addCardPopupSelector)
+  .querySelector(editProfilePopupSelector)
   .querySelector(configObj.formSelector);
 const addPlaceForm = document
-  .querySelector(editProfilePopupSelector)
+  .querySelector(addCardPopupSelector)
   .querySelector(configObj.formSelector);
 
 //form validators
@@ -53,59 +39,46 @@ const addPlaceFormValidator = new FormValidator(configObj, addPlaceForm);
 //buttons
 const addCardButton = document.querySelector(".profile__add-button");
 const editProfileButton = document.querySelector(".profile__edit-button");
-// const addCardPopupCloseButton = addCardPopup.querySelector(
-//   ".modal__close-button"
-// );
-// const editProfilePopupCloseButton = editProfilePopup.querySelector(
-//   ".modal__close-button"
-// );
-// const imagePreviewPopupCloseButton = imagePreviewPopup.querySelector(
-//   ".modal__close-button"
-// );
+
+//user info
+const userInfo = new UserInfo({
+  nameSelector: profileNameSelector,
+  jobSelector: profileDescriptionSelector,
+});
 
 //gallery wrapper
 const cardsGallery = document.querySelector(".gallery__cards");
 
 //handler functions
-// const handleEditButtonClick = () => {
-//   fillProfileForm();
-//   editProfileFormValidator.checkInputErrors();
-//   editProfileFormValidator.resetButtonState();
-//   openPopup(editProfilePopup);
-// };
-const handleProfileEditFormSubmit = (evt) => {
-  evt.preventDefault();
-
-  profileName.textContent = nameInputValue.value;
-  profileTitle.textContent = descriptionInputvalue.value;
+const handleEditButtonClick = () => {
+  nameInputValue.value = userInfo.getUserInfo().name;
+  descriptionInputValue.value = userInfo.getUserInfo().job;
+  editProfileFormValidator.checkInputErrors();
+  editProfileFormValidator.resetButtonState();
+  editProfilePopup.open();
+};
+const handleProfileEditFormSubmit = ({ name, description }) => {
+  userInfo.setUserInfo({
+    name,
+    description,
+  });
 
   editProfilePopup.close();
 };
-const handleAddPlaceFormSubmit = (evt) => {
-  evt.preventDefault();
-
-  const placeName = cardNameInputValue.value;
-  const placeLink = cardLinkInputValue.value;
-  const newPlace = { name: placeName, link: placeLink };
+const handleAddPlaceFormSubmit = ({ title, link }) => {
+  const newPlace = { name: title, link: link };
   const cardElement = createCard(newPlace);
 
   cardsGallery.prepend(cardElement);
   addPlaceForm.reset();
   addPlaceFormValidator.resetButtonState();
-
   addCardPopup.close();
 };
-const handleImageClick = () => {
+const handleImageClick = ({ title, link }) => {
   const imagePreviewPopup = new PopupWithImage(imagePreviewPopupSelector);
   imagePreviewPopup.setEventListeners();
-  imagePreviewPopup.open();
+  imagePreviewPopup.open({ title, link });
 };
-
-//fill edit profile popup inputs
-// const fillProfileForm = () => {
-//   nameInputValue.value = profileName.textContent;
-//   descriptionInputvalue.value = profileTitle.textContent;
-// };
 
 //create card element
 const createCard = (data) => {
@@ -125,22 +98,19 @@ const editProfilePopup = new PopupWithForm(
   handleProfileEditFormSubmit
 );
 editProfilePopup.setEventListeners();
-editProfileButton.addEventListener("click", editProfilePopup.open);
+editProfileButton.addEventListener("click", () => {
+  handleEditButtonClick();
+});
 
-//open popups click event listeners
-
-// addCardButton.addEventListener("click", () => openPopup(addCardPopup));
-
-//submit event listeners
-// editProfilePopup.addEventListener("submit", handleProfileEditFormSubmit);
-// addCardPopup.addEventListener("submit", handleAddPlaceFormSubmit);
-
+//add card popup
 const addCardPopup = new PopupWithForm(
   addCardPopupSelector,
   handleAddPlaceFormSubmit
 );
 addCardPopup.setEventListeners();
-addCardButton.addEventListener("click", addCardPopup.open);
+addCardButton.addEventListener("click", () => {
+  addCardPopup.open();
+});
 
 //create cardGallery section
 const cardGallery = new Section(
@@ -155,10 +125,4 @@ const cardGallery = new Section(
 );
 
 cardGallery.renderItems();
-//populate card gallery
-// initialCards.forEach((item) => {
-//   const cardElement = createCard(item);
-//   cardsGallery.append(cardElement);
-// });
-
 enableValidation();

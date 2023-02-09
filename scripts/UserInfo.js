@@ -13,5 +13,10 @@ class UserInfo {
     return userInfo;
   }
 
-  setUserInfo() {}
+  setUserInfo({ name, description }) {
+    this._name.textContent = name;
+    this._job.textContent = description;
+  }
 }
+
+export { UserInfo };

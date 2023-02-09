@@ -30,7 +30,9 @@ class Card {
 
     this._likeButton.addEventListener("click", this._handleLikeClick);
     deleteButton.addEventListener("click", this._handleDeleteClick);
-    cardImage.addEventListener("click", this._handleImageClick);
+    cardImage.addEventListener("click", () => {
+      this._handleImageClick({ title: this._title, link: this._link });
+    });
   }
 
   generateCard() {
