@@ -12,8 +12,8 @@ const profileNameSelector = ".profile__name";
 const profileDescriptionSelector = ".profile__title";
 
 //input values
-const nameInputValue = document.querySelector(".form__input_content_name");
-const descriptionInputValue = document.querySelector(
+const nameInput = document.querySelector(".form__input_content_name");
+const descriptionInput = document.querySelector(
   ".form__input_content_description"
 );
 
@@ -41,6 +41,10 @@ const addPlaceFormValidator = new FormValidator(configObj, addPlaceForm);
 const addCardButton = document.querySelector(".profile__add-button");
 const editProfileButton = document.querySelector(".profile__edit-button");
 
+//image preview pop up
+const imagePreviewPopup = new PopupWithImage(imagePreviewPopupSelector);
+imagePreviewPopup.setEventListeners();
+
 //user info
 const userInfo = new UserInfo({
   nameSelector: profileNameSelector,
@@ -50,10 +54,18 @@ const userInfo = new UserInfo({
 //gallery wrapper
 const cardsGallery = document.querySelector(".gallery__cards");
 
+//fill profile form
+const fillProfileForm = () => {
+  const user = userInfo.getUserInfo();
+
+  nameInput.value = user.name;
+  descriptionInput.value = user.job;
+};
+
 //handler functions
 const handleEditButtonClick = () => {
-  nameInputValue.value = userInfo.getUserInfo().name;
-  descriptionInputValue.value = userInfo.getUserInfo().job;
+  fillProfileForm();
+
   editProfileFormValidator.checkInputErrors();
   editProfileFormValidator.resetButtonState();
   editProfilePopup.open();
@@ -71,14 +83,11 @@ const handleAddPlaceFormSubmit = ({ title, link }) => {
   const cardElement = createCard(newPlace);
 
   cardsGallery.prepend(cardElement);
-  addPlaceForm.reset();
   addPlaceFormValidator.resetButtonState();
   addCardPopup.close();
 };
-const handleImageClick = ({ title, link }) => {
-  const imagePreviewPopup = new PopupWithImage(imagePreviewPopupSelector);
-  imagePreviewPopup.setEventListeners();
-  imagePreviewPopup.open({ title, link });
+const handleImageClick = (card) => {
+  imagePreviewPopup.open(card);
 };
 
 //create card element
@@ -99,9 +108,7 @@ const editProfilePopup = new PopupWithForm(
   handleProfileEditFormSubmit
 );
 editProfilePopup.setEventListeners();
-editProfileButton.addEventListener("click", () => {
-  handleEditButtonClick();
-});
+editProfileButton.addEventListener("click", handleEditButtonClick);
 
 //add card popup
 const addCardPopup = new PopupWithForm(

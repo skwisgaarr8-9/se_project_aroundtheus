@@ -19,17 +19,19 @@ class Popup {
     }
   };
 
+  _handleOutsideClick = (evt) => {
+    if (evt.target.classList.contains("modal")) {
+      this.close();
+    }
+  };
+
   setEventListeners() {
     this._closeButton = this._popup.querySelector(".modal__close-button");
 
     this._closeButton.addEventListener("click", () => {
       this.close();
     });
-    this._popup.addEventListener("mousedown", (evt) => {
-      if (evt.target.classList.contains("modal")) {
-        this.close();
-      }
-    });
+    this._popup.addEventListener("mousedown", this._handleOutsideClick);
   }
 }
 

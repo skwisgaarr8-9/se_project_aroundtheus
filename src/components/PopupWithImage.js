@@ -5,13 +5,13 @@ class PopupWithImage extends Popup {
     super(popupSelector);
   }
 
-  open = ({ title, link }) => {
+  open = (data) => {
     const imageElement = this._popup.querySelector(".modal__image");
     const imageCaption = this._popup.querySelector(".modal__caption");
 
-    imageElement.src = link;
-    imageElement.alt = title;
-    imageCaption.textContent = title;
+    imageElement.src = data.link;
+    imageElement.alt = data.title;
+    imageCaption.textContent = data.title;
 
     super.open();
   };
