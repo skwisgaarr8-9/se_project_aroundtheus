@@ -1,0 +1,39 @@
+{
+  "name": "se_project_aroundtheus",
+  "version": "1.0.0",
+  "description": "This project is the seventh in Practicum's Software Engineering course. It is the fifth stage of a previous project. This project was all about refractoring. In this sprint, we learned about JavaScript classes, Object Oriented Programming and the principles of encapsulation, inheritance, and polymorphism. In this project, I reorganized my code to create two classes `Card` and `FormValidator`. `Card` holds all of the functionality for creating the cards of the picture gallery. `FormValidator` holds all of the functionality of validating the user's input.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skwisgaarr8-9/se_project_aroundtheus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skwisgaarr8-9/se_project_aroundtheus/issues"
+  },
+  "homepage": "https://github.com/skwisgaarr8-9/se_project_aroundtheus#readme",
+  "devDependencies": {
+    "@babel/core": "7.18.9",
+    "@babel/preset-env": "7.18.9",
+    "autoprefixer": "10.4.7",
+    "babel-loader": "8.2.5",
+    "clean-webpack-plugin": "4.0.0",
+    "css-loader": "6.7.1",
+    "cssnano": "5.1.12",
+    "html-webpack-plugin": "5.5.0",
+    "mini-css-extract-plugin": "2.6.1",
+    "postcss-loader": "7.0.1",
+    "webpack": "5.73.0",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.9.3"
+  },
+  "dependencies": {
+    "core-js": "3.23.5"
+  }
+}

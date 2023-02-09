@@ -1,6 +1,6 @@
-# Project 7: Around The U.S.
+# Project 8: Around The U.S.
 
-This project is the seventh in Practicum's Software Engineering course. It is the fifth stage of a previous project. This project was all about refractoring. In this sprint, we learned about JavaScript classes, Object Oriented Programming and the principles of encapsulation, inheritance, and polymorphism. In this project, I reorganized my code to create two classes `Card` and `FormValidator`. `Card` holds all of the functionality for creating the cards of the picture gallery. `FormValidator` holds all of the functionality of validating the user's input.
+This project is the eighth in Practicum's Software Engineering course. It is the sixth stage of a previous project. In this project, I continued to refractor my code, creating new classes `Popup`, `UserInfo`, and subclasses `PopupWithForm` and `PopupWithImage` to handle the modal popups and getting user info from the profile section. I also installed webpack and several other dependencies to help bundle all the files together.
 
 ## Project Features
 
@@ -11,6 +11,7 @@ This project is the seventh in Practicum's Software Engineering course. It is th
 - JavaScript
 - Form validation
 - JavaScript classes
+- Webpack
 
 ## Future Plans
 

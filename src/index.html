@@ -10,7 +10,6 @@
     />
     <meta name="author" content="Francis Flanagan" />
     <meta name="keywords" content="nature, photography, gallery, profile" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="icon" href="./favicon.ico" />
     <title>Around The U.S.</title>
   </head>
@@ -19,7 +18,7 @@
       <header class="header page__header">
         <img
           class="header__logo"
-          src="./images/logo.svg"
+          src="<%=require('./images/logo.svg')%>"
           alt="A text logo of the words 'Around the U.S.'"
         />
       </header>
@@ -28,7 +27,7 @@
         <section class="profile page__profile">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Portrait picture of photographer Jacques Cousteau with a blue collared shirt and a red knit hat"
           />
           <div class="profile__content">
@@ -133,10 +132,5 @@
         </li>
       </template>
     </div>
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/utils.js"></script>
-    <script type="module" src="./scripts/constants.js"></script>
   </body>
 </html>
