@@ -19,8 +19,8 @@ I hope to add more functionality to the site over the next stages of the course 
 
 ## Preview
 
-<img src="./images/demos/project-6-demo1.jpg">
-<img src="./images/demos/project-6-demo2.jpg">
+<img src="./src/images/demos/project-6-demo1.jpg">
+<img src="./src/images/demos/project-6-demo2.jpg">
 
 ## Live Version
 
