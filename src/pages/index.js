@@ -83,7 +83,6 @@ const handleAddPlaceFormSubmit = ({ title, link }) => {
   const cardElement = createCard(newPlace);
 
   cardsGallery.prepend(cardElement);
-  addPlaceFormValidator.resetButtonState();
   addCardPopup.close();
 };
 const handleImageClick = (card) => {
@@ -117,6 +116,7 @@ const addCardPopup = new PopupWithForm(
 );
 addCardPopup.setEventListeners();
 addCardButton.addEventListener("click", () => {
+  addPlaceFormValidator.resetButtonState();
   addCardPopup.open();
 });
 
