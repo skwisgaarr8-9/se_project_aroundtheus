@@ -4,6 +4,7 @@ class Card {
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleImageClick = handleImageClick;
+    this._likes = data.likes.length;
   }
 
   _getCardTemplate() {
@@ -40,10 +41,12 @@ class Card {
     this._element = this._getCardTemplate();
     const cardTitle = this._element.querySelector(".card__title");
     const cardImage = this._element.querySelector(".card__image");
+    this._cardLikeCount = this._element.querySelector(".card__like-count");
 
     cardImage.alt = this._title;
     cardTitle.textContent = this._title;
     cardImage.src = this._link;
+    this._cardLikeCount.textContent = this._likes;
 
     this._setEventListeners();
 

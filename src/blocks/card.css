@@ -53,6 +53,12 @@
   overflow: hidden;
 }
 
+.card__like-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+
 .card__like-button {
   transition: opacity 0.4s ease;
   border: none;
@@ -60,9 +66,17 @@
   background-repeat: no-repeat;
   background-color: #fff;
   width: 21px;
-  height: 18px;
+  height: 19px;
   padding: 0;
   cursor: pointer;
+}
+
+.card__like-count {
+  color: #000;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.2;
+  margin-left: 6px;
 }
 
 .card__like-button:hover {
@@ -71,4 +85,6 @@
 
 .card__like-button-clicked {
   background-image: url(../images/like-full.svg);
+  width: 21px;
+  height: 19px;
 }

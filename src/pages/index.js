@@ -5,11 +5,23 @@ import { Section } from "../components/Section.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { Api } from "../components/Api.js";
 import "./index.css";
+
+//api variables
+const apiBaseUrl = "https://around.nomoreparties.co/v1/group-12";
+const apiHeaderObject = {
+  authorization: "02e654eb-5ace-4af7-a9f1-ec1c835dc4d8",
+  "Content-Type": "application/json",
+};
+
+//api class
+const api = new Api({ baseUrl: apiBaseUrl, headers: apiHeaderObject });
 
 //profile nodes
 const profileNameSelector = ".profile__name";
 const profileDescriptionSelector = ".profile__title";
+const profileAvatarSelector = ".profile__image";
 
 //input values
 const nameInput = document.querySelector(".form__input_content_name");
@@ -49,6 +61,7 @@ imagePreviewPopup.setEventListeners();
 const userInfo = new UserInfo({
   nameSelector: profileNameSelector,
   jobSelector: profileDescriptionSelector,
+  avatarSelector: profileAvatarSelector,
 });
 
 //gallery wrapper
@@ -77,6 +90,8 @@ const handleProfileEditFormSubmit = ({ name, description }) => {
   });
 
   editProfilePopup.close();
+
+  api.editUserInfo({ name, description });
 };
 const handleAddPlaceFormSubmit = ({ title, link }) => {
   const newPlace = { name: title, link: link };
@@ -120,17 +135,27 @@ addCardButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
-//create cardGallery section
-const cardGallery = new Section(
-  {
-    items: initialCards,
-    renderer: (card) => {
-      const cardElement = createCard(card);
-      cardGallery.setItem(cardElement);
-    },
-  },
-  ".gallery__cards"
-);
-
-cardGallery.renderItems();
 enableValidation();
+
+api
+  .showPromiseStatus()
+  .then(({ initialCards, fetchedUserInfo }) => {
+    userInfo.setUserInfo({
+      name: fetchedUserInfo.name,
+      description: fetchedUserInfo.about,
+    });
+    const cardGallery = new Section(
+      {
+        items: initialCards,
+        renderer: (card) => {
+          const cardElement = createCard(card);
+          cardGallery.setItem(cardElement);
+        },
+      },
+      ".gallery__cards"
+    );
+    cardGallery.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
