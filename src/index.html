@@ -27,13 +27,12 @@
         <section class="profile page__profile">
           <img
             class="profile__image"
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Portrait picture of photographer Jacques Cousteau with a blue collared shirt and a red knit hat"
           />
           <div class="profile__content">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__edit-button" type="button"></button>
-            <p class="profile__title">Explorer</p>
+            <p class="profile__title"></p>
           </div>
           <button class="profile__add-button" type="button"></button>
         </section>
@@ -119,6 +118,15 @@
           <img class="modal__image" />
           <p class="modal__caption"></p>
           <button class="modal__close-button" type="button"></button>
+        </div>
+      </div>
+      <div class="modal modal_content-card-delete-confirm">
+        <div class="modal__delete-container">
+          <h2 class="modal__heading">Are you sure?</h2>
+          <button class="modal__close-button" type="button"></button>
+          <form class="modal__form form">
+            <button class="modal__save-button" type="submit">Yes</button>
+          </form>
         </div>
       </div>
       <template id="card">

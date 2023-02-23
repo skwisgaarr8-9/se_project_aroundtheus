@@ -28,6 +28,46 @@
   border-radius: 10px;
 }
 
+.modal__delete-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  width: 100%;
+  max-width: 430px;
+  min-width: 282px;
+  position: relative;
+  border-radius: 10px;
+  /* padding: 36px; */
+}
+
+.modal__heading {
+  color: black;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
+  padding: 30px 36px 0 36px;
+}
+
+.modal__save-button {
+  display: block;
+  background-color: #000;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  padding: 13px 124px 18px 125px;
+  border-radius: 2px;
+  transition: opacity 0.4s ease;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+
+.modal__save-button:hover {
+  opacity: 0.8;
+}
+
 .modal__close-button {
   position: absolute;
   background: transparent;
@@ -64,6 +104,19 @@
 @media screen and (max-width: 530px) {
   .modal__container {
     width: 88%;
+  }
+
+  .modal__delete-container {
+    width: 88%;
+  }
+
+  .modal__heading {
+    font-size: 18px;
+  }
+
+  .modal__save-button {
+    padding: 14px 100px;
+    font-size: 14px;
   }
 
   .modal__close-button {

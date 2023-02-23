@@ -1,11 +1,13 @@
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { configObj, initialCards } from "../utils/constants.js";
+import { configObj } from "../utils/constants.js";
 import { Section } from "../components/Section.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupDeleteConfirm } from "../components/PopupDeleteConfirm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { Api } from "../components/Api.js";
+
 import "./index.css";
 
 //api variables
@@ -36,6 +38,7 @@ const templateSelector = "#card";
 const addCardPopupSelector = ".modal_content_add-place";
 const editProfilePopupSelector = ".modal_content_edit-profile";
 const imagePreviewPopupSelector = ".modal_content-card-preview";
+const deleteConfirmPopupSelector = ".modal_content-card-delete-confirm";
 
 //forms
 const editProfileForm = document
@@ -53,7 +56,7 @@ const addPlaceFormValidator = new FormValidator(configObj, addPlaceForm);
 const addCardButton = document.querySelector(".profile__add-button");
 const editProfileButton = document.querySelector(".profile__edit-button");
 
-//image preview pop up
+//image preview popup
 const imagePreviewPopup = new PopupWithImage(imagePreviewPopupSelector);
 imagePreviewPopup.setEventListeners();
 
@@ -76,6 +79,21 @@ const fillProfileForm = () => {
 };
 
 //handler functions
+
+const handleDeleteBinClick = (cardId, card) => {
+  deleteCardConfirmPopup.setCallback(() => {
+    api
+      .deleteCard({ cardId })
+      .then(() => {
+        card.remove();
+        deleteCardConfirmPopup.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+  deleteCardConfirmPopup.open();
+};
 const handleEditButtonClick = () => {
   fillProfileForm();
 
@@ -84,29 +102,46 @@ const handleEditButtonClick = () => {
   editProfilePopup.open();
 };
 const handleProfileEditFormSubmit = ({ name, description }) => {
-  userInfo.setUserInfo({
-    name,
-    description,
-  });
-
-  editProfilePopup.close();
-
-  api.editUserInfo({ name, description });
+  api
+    .editUserInfo({ name, description })
+    .then((res) => {
+      userInfo.setUserInfo({
+        name: res.name,
+        description: res.about,
+        avatar: res.avatar,
+      });
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 const handleAddPlaceFormSubmit = ({ title, link }) => {
-  const newPlace = { name: title, link: link };
-  const cardElement = createCard(newPlace);
+  api
+    .addNewCard({ name: title, link })
+    .then((res) => {
+      const cardElement = createCard({ data: res, isUserCard: true });
 
-  cardsGallery.prepend(cardElement);
-  addCardPopup.close();
+      cardsGallery.prepend(cardElement);
+      addCardPopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 const handleImageClick = (card) => {
   imagePreviewPopup.open(card);
 };
 
 //create card element
-const createCard = (data) => {
-  const cardElement = new Card(data, templateSelector, handleImageClick);
+const createCard = ({ data, isUserCard }) => {
+  const cardElement = new Card({
+    data,
+    templateSelector,
+    handleImageClick,
+    isUserCard,
+    handleDeleteBinClick,
+  });
   return cardElement.generateCard();
 };
 
@@ -135,6 +170,12 @@ addCardButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
+//delete card confirmation popup
+const deleteCardConfirmPopup = new PopupDeleteConfirm({
+  popupSelector: deleteConfirmPopupSelector,
+});
+deleteCardConfirmPopup.setEventListeners();
+
 enableValidation();
 
 api
@@ -143,12 +184,16 @@ api
     userInfo.setUserInfo({
       name: fetchedUserInfo.name,
       description: fetchedUserInfo.about,
+      avatar: fetchedUserInfo.avatar,
     });
     const cardGallery = new Section(
       {
         items: initialCards,
         renderer: (card) => {
-          const cardElement = createCard(card);
+          const cardElement = createCard({
+            data: card,
+            isUserCard: fetchedUserInfo._id === card.owner._id,
+          });
           cardGallery.setItem(cardElement);
         },
       },
