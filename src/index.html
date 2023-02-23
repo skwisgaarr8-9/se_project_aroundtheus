@@ -25,10 +25,13 @@
 
       <main class="content">
         <section class="profile page__profile">
-          <img
-            class="profile__image"
-            alt="Portrait picture of photographer Jacques Cousteau with a blue collared shirt and a red knit hat"
-          />
+          <div class="profile__image-container">
+            <img
+              class="profile__image"
+              alt="Portrait picture of photographer Jacques Cousteau with a blue collared shirt and a red knit hat"
+            />
+            <button class="profile__image-edit-button" type="button"></button>
+          </div>
           <div class="profile__content">
             <h1 class="profile__name"></h1>
             <button class="profile__edit-button" type="button"></button>
@@ -113,20 +116,43 @@
           <button class="modal__close-button" type="button"></button>
         </div>
       </div>
-      <div class="modal modal_content-card-preview">
+      <div class="modal modal_content_card-preview">
         <div class="modal__image-container">
           <img class="modal__image" />
           <p class="modal__caption"></p>
           <button class="modal__close-button" type="button"></button>
         </div>
       </div>
-      <div class="modal modal_content-card-delete-confirm">
+      <div class="modal modal_content_card-delete-confirm">
         <div class="modal__delete-container">
           <h2 class="modal__heading">Are you sure?</h2>
           <button class="modal__close-button" type="button"></button>
           <form class="modal__form form">
-            <button class="modal__save-button" type="submit">Yes</button>
+            <button class="modal__save-button form__button" type="submit">
+              Yes
+            </button>
           </form>
+        </div>
+      </div>
+      <div class="modal modal_content_edit-avatar">
+        <div class="modal__container">
+          <form class="modal__form form">
+            <fieldset class="form__fieldset">
+              <h2 class="form__heading">Change profile picture</h2>
+              <input
+                id="avatar-link-input"
+                class="form__input form__input_content_avatar-link"
+                type="url"
+                name="link"
+                placeholder="Image Link"
+                required
+                autocomplete="off"
+              />
+              <span class="form__error avatar-link-input-error"></span>
+              <button class="form__button" type="submit">Save</button>
+            </fieldset>
+          </form>
+          <button class="modal__close-button" type="button"></button>
         </div>
       </div>
       <template id="card">

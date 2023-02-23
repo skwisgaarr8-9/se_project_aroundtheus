@@ -1,6 +1,6 @@
 import { Popup } from "./Popup.js";
 
-class PopupDeleteConfirm extends Popup {
+class PopupWithConfirmation extends Popup {
   constructor({ popupSelector }) {
     super(popupSelector);
   }
@@ -19,4 +19,4 @@ class PopupDeleteConfirm extends Popup {
   }
 }
 
-export { PopupDeleteConfirm };
+export { PopupWithConfirmation };

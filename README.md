@@ -1,8 +1,6 @@
-# Project 8: Around The U.S.
+# Project 9: Around The U.S.
 
-This project is the eighth in Practicum's Software Engineering course. It is the sixth stage of a previous project. In this project, I continued to refractor my code, creating new classes `Popup`, `UserInfo`, and subclasses `PopupWithForm` and `PopupWithImage` to handle the modal popups and getting user info from the profile section. I also installed webpack and several other dependencies to help bundle all the files together.
-
-## Project Features
+This project is the ninth in Practicum's Software Engineering course. It is the seventh stage of a previous project. In this project, I continued to refractor my code, creating a new class named `Api` which I use to make requests to a server to process information. The site now saves profile information when editted, saves new card information, and allows users to change their profile avatars all while making requests to the server to get, send, edit, or delete from the server.
 
 - Semantic HTML
 - CSS grid
@@ -12,6 +10,7 @@ This project is the eighth in Practicum's Software Engineering course. It is the
 - Form validation
 - JavaScript classes
 - Webpack
+- API requests
 
 ## Future Plans
 
@@ -19,8 +18,7 @@ I hope to add more functionality to the site over the next stages of the course 
 
 ## Preview
 
-<img src="./src/images/demos/project-6-demo1.jpg">
-<img src="./src/images/demos/project-6-demo2.jpg">
+<img src="./src/images/demos/project-9-demo-1.png">
 
 ## Live Version
 

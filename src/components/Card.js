@@ -5,6 +5,9 @@ class Card {
     handleImageClick,
     isUserCard,
     handleDeleteBinClick,
+    isLiked,
+    handleAddCardLike,
+    handleRemoveCardLike,
   }) {
     this._title = data.name;
     this._link = data.link;
@@ -12,9 +15,19 @@ class Card {
     this._handleImageClick = handleImageClick;
     this._likes = data.likes;
     this._id = data._id;
-    this._isUserCard = isUserCard;
     this._handleDeleteBinClick = handleDeleteBinClick;
-    this._isLiked = false;
+    this._isLiked = isLiked;
+    this._ownerId = data.owner._id;
+    this._isUserCard = isUserCard;
+    this._handleAddCardLike = handleAddCardLike;
+    this._handleRemoveCardLike = handleRemoveCardLike;
+  }
+
+  _setCardLikes() {
+    this._cardLikeCount.textContent = this._likes.length;
+    if (this._isLiked) {
+      this._likeButton.classList.add("card__like-button-clicked");
+    }
   }
 
   _setDeleteButton() {
@@ -38,7 +51,15 @@ class Card {
   }
 
   _handleLikeClick = () => {
-    this._likeButton.classList.toggle("card__like-button-clicked");
+    if (!this._isLiked) {
+      this._handleAddCardLike(this._id, this._cardLikeCount);
+      this._likeButton.classList.add("card__like-button-clicked");
+      this._isLiked = !this._isLiked;
+    } else {
+      this._handleRemoveCardLike(this._id, this._cardLikeCount);
+      this._likeButton.classList.remove("card__like-button-clicked");
+      this._isLiked = !this._isLiked;
+    }
   };
 
   _setEventListeners() {
@@ -60,10 +81,11 @@ class Card {
     cardImage.alt = this._title;
     cardTitle.textContent = this._title;
     cardImage.src = this._link;
-    this._cardLikeCount.textContent = this._likes.length;
 
     this._setEventListeners();
     this._setDeleteButton();
+    this._setCardLikes();
+
     return this._element;
   }
 }
