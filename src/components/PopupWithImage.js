@@ -3,15 +3,14 @@ import { Popup } from "./Popup.js";
 class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
+    this._imageElement = this._popup.querySelector(".modal__image");
+    this._imageCaption = this._popup.querySelector(".modal__caption");
   }
 
   open = (data) => {
-    const imageElement = this._popup.querySelector(".modal__image");
-    const imageCaption = this._popup.querySelector(".modal__caption");
-
-    imageElement.src = data.link;
-    imageElement.alt = data.title;
-    imageCaption.textContent = data.title;
+    this._imageElement.src = data.link;
+    this._imageElement.alt = data.title;
+    this._imageCaption.textContent = data.title;
 
     super.open();
   };

@@ -8,17 +8,19 @@ class UserInfo {
   getUserInfo() {
     const userInfo = {
       name: this._name.textContent,
-      job: this._job.textContent,
+      description: this._job.textContent,
       avatar: this._avatar.src,
+      id: this._userId,
     };
 
     return userInfo;
   }
 
-  setUserInfo({ name, description, avatar }) {
+  setUserInfo({ name, about, avatar, _id }) {
     this._name.textContent = name;
-    this._job.textContent = description;
+    this._job.textContent = about;
     this._avatar.src = avatar;
+    this._userId = _id;
   }
 }
 

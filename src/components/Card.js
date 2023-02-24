@@ -23,6 +23,10 @@ class Card {
     this._handleRemoveCardLike = handleRemoveCardLike;
   }
 
+  getCardId() {
+    return this._id;
+  }
+
   _setCardLikes() {
     this._cardLikeCount.textContent = this._likes.length;
     if (this._isLiked) {
@@ -50,23 +54,32 @@ class Card {
     return cardTemplate;
   }
 
+  addLike(card) {
+    this._likeButton.classList.add("card__like-button-clicked");
+    this._cardLikeCount.textContent = card.likes.length;
+    this._isLiked = !this._isLiked;
+  }
+
+  removeLike(card) {
+    this._likeButton.classList.remove("card__like-button-clicked");
+    this._cardLikeCount.textContent = card.likes.length;
+    this._isLiked = !this._isLiked;
+  }
+
   _handleLikeClick = () => {
     if (!this._isLiked) {
-      this._handleAddCardLike(this._id, this._cardLikeCount);
-      this._likeButton.classList.add("card__like-button-clicked");
-      this._isLiked = !this._isLiked;
+      this._handleAddCardLike(this);
     } else {
-      this._handleRemoveCardLike(this._id, this._cardLikeCount);
-      this._likeButton.classList.remove("card__like-button-clicked");
-      this._isLiked = !this._isLiked;
+      this._handleRemoveCardLike(this);
     }
   };
 
   _setEventListeners() {
-    this._likeButton = this._element.querySelector(".card__like-button");
     const cardImage = this._element.querySelector(".card__image");
 
-    this._likeButton.addEventListener("click", this._handleLikeClick);
+    this._likeButton.addEventListener("click", () => {
+      this._handleLikeClick(this);
+    });
     cardImage.addEventListener("click", () => {
       this._handleImageClick({ title: this._title, link: this._link });
     });
@@ -77,6 +90,7 @@ class Card {
     const cardTitle = this._element.querySelector(".card__title");
     const cardImage = this._element.querySelector(".card__image");
     this._cardLikeCount = this._element.querySelector(".card__like-count");
+    this._likeButton = this._element.querySelector(".card__like-button");
 
     cardImage.alt = this._title;
     cardTitle.textContent = this._title;
